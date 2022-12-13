@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const {
+  init, addCommands, close
+} = require('./helpers/commander');
+const dotenv = require('dotenv');
+
+dotenv.config()
+
+const { setVar } = require('./helpers/variables');
+
+const start = async () => {
+  // setting base paths
+  setVar('cliPath', __dirname);
+  
+  // initialise the commander
+  await init();
+
+  // register commands to the commander
+  await addCommands();
+
+  // close commander
+  await close();
+};
+
+start();
